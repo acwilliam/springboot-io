@@ -8,5 +8,5 @@ public interface AnimeRepository{
 
     List<Anime> listaAll();
 
-    
+
 }

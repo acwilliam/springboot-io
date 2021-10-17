@@ -9,7 +9,4 @@ public class Anime {
     Long id;
     private String nome;
 
-
-    public Anime(String dbz) {
-    }
 }

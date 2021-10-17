@@ -5,10 +5,9 @@ import com.acwilliam.springboot.service.AnimeService;
 import com.acwilliam.springboot.util.DateUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,9 +23,14 @@ public class AnimeController {
     @Autowired
     private AnimeService animeService;
 
-    @GetMapping(path = "list")
-    public List<Anime> list(){
+    @GetMapping
+    public ResponseEntity<List<Anime>>list() {
         log.info(dateUtil.formatLocalDateTimeToDateBaseStyle(LocalDateTime.now()));
-        return animeService.listaAll();
+        return new ResponseEntity<> (animeService.listaAll(), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Anime>findById(@PathVariable long id) {
+        return  ResponseEntity.ok(animeService.findById(id));
     }
 }
