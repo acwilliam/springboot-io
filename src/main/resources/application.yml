@@ -1,3 +1,13 @@
 server:
   error:
     include-stacktrace: never
+
+spring:
+  dataSource:
+    url: jdbc:mysql://localhost:3306/springbootessentials?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+
