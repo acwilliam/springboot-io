@@ -7,6 +7,8 @@ import com.acwilliam.springboot.service.AnimeService;
 import com.acwilliam.springboot.util.DateUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,10 +28,16 @@ public class AnimeController {
     @Autowired
     private AnimeService animeService;
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<List<Anime>>list() {
         log.info(dateUtil.formatLocalDateTimeToDateBaseStyle(LocalDateTime.now()));
         return new ResponseEntity<> (animeService.listaAll(), HttpStatus.OK);
+    }*/
+
+     @GetMapping
+    public ResponseEntity<Page<Anime>>list(Pageable pageable) {
+        log.info(dateUtil.formatLocalDateTimeToDateBaseStyle(LocalDateTime.now()));
+        return ResponseEntity.ok(animeService.listaAll(pageable));
     }
 
     @GetMapping(path = "/{id}")

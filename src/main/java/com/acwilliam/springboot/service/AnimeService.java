@@ -7,6 +7,8 @@ import com.acwilliam.springboot.repository.AnimeRepository;
 import com.acwilliam.springboot.request.AnimePostRequestBody;
 import com.acwilliam.springboot.request.AnimePutRequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +22,8 @@ public class AnimeService  {
     @Autowired
     private AnimeRepository animeRepository;
 
-    public List<Anime> listaAll(){
-        return animeRepository.findAll();
+    public Page<Anime> listaAll(Pageable pageable){
+        return animeRepository.findAll(pageable);
     }
 
     public Anime findByIdOrThrowException(long id){
