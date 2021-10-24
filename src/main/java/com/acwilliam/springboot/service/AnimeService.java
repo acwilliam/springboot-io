@@ -26,6 +26,10 @@ public class AnimeService  {
         return animeRepository.findAll(pageable);
     }
 
+    public List<Anime> listaAllNoPageable() {
+      return animeRepository.findAll();
+    }
+
     public Anime findByIdOrThrowException(long id){
         return animeRepository.findById(id)
                 .orElseThrow(()-> new BadRequestException("Anime não encontrado"));
@@ -65,4 +69,6 @@ public class AnimeService  {
     public List<Anime> findByNome(String nome){
         return animeRepository.findByNome(nome);
     }
+
+
 }
