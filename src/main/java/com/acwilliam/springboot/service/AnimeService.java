@@ -34,7 +34,7 @@ public class AnimeService  {
     @Transactional(rollbackFor = Exception.class)
     public Anime save(AnimePostRequestBody animePostRequestBody) {
         return animeRepository.save(AnimeMapper.INSTANCE.ToAnime(animePostRequestBody));
-        
+
 
        // Anime anime =Anime.builder().nome(animePostRequestBody.getNome()).build();
        // return animeRepository.save(anime);
