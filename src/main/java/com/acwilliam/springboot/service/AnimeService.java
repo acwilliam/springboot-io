@@ -55,4 +55,8 @@ public class AnimeService  {
       //  animeRepository.save(anime);
      
     }
+
+    public List<Anime> findByNome(String nome){
+        return animeRepository.findByNome(nome);
+    }
 }
