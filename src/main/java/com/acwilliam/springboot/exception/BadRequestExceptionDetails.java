@@ -1,17 +1,12 @@
 package com.acwilliam.springboot.exception;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
 
-@Data
-@Builder
-public class BadRequestExceptionDetails {
-    private String titulo;
-    private int status;
-    private String detalhes;
-    private String mensagemDesenvolvedor;
-    private LocalDateTime timeStamp;
+@Getter
+@SuperBuilder
+public class BadRequestExceptionDetails extends ExceptionDetails {
+
 }
 
