@@ -1,6 +1,7 @@
 package com.acwilliam.springboot.service;
 
 import com.acwilliam.springboot.dominio.Anime;
+import com.acwilliam.springboot.exception.BadRequestException;
 import com.acwilliam.springboot.mapper.AnimeMapper;
 import com.acwilliam.springboot.repository.AnimeRepository;
 import com.acwilliam.springboot.request.AnimePostRequestBody;
@@ -24,7 +25,7 @@ public class AnimeService  {
 
     public Anime findByIdOrThrowException(long id){
         return animeRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Anime não encontrado"));
+                .orElseThrow(()-> new BadRequestException("Anime não encontrado"));
 
 
     }
