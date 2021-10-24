@@ -3,6 +3,7 @@ package com.acwilliam.springboot.repository;
 import com.acwilliam.springboot.dominio.Anime;
 
 
+import com.acwilliam.springboot.utils.CriarAnime;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,8 +14,6 @@ import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.util.Assert.isTrue;
 
 @DataJpaTest
 @DisplayName("Testes para o anime repository")
@@ -26,7 +25,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Persistir anime com sucesso")
     void savePersistAnimeSucesso(){
-        Anime salvarAnime = createAnime();
+        Anime salvarAnime = CriarAnime.CriarAnimeParaSerSalvo();
         Anime animeSalvo = this.animeRepository.save(salvarAnime);
         Assertions.assertThat(animeSalvo).isNotNull();
         Assertions.assertThat(animeSalvo.getId()).isNotNull();
@@ -37,7 +36,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Atualizar Anime com sucesso")
     void atualizarAnimeSucesso(){
-        Anime salvarAnime = createAnime();
+        Anime salvarAnime = CriarAnime.CriarAnimeParaSerSalvo();
         Anime animeSalvo = this.animeRepository.save(salvarAnime);
 
         animeSalvo.setNome("Overlord");
@@ -53,7 +52,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Deletar Anime com sucesso")
     void deletarAnimeSucesso(){
-        Anime salvarAnime = createAnime();
+        Anime salvarAnime = CriarAnime.CriarAnimeParaSerSalvo();
         Anime animeSalvo = this.animeRepository.save(salvarAnime);
 
         this.animeRepository.delete(animeSalvo);
@@ -67,7 +66,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Buscar Anime com sucesso")
     void buscarAnimeSucesso(){
-        Anime salvarAnime = createAnime();
+        Anime salvarAnime = CriarAnime.CriarAnimeParaSerSalvo();
         Anime animeSalvo = this.animeRepository.save(salvarAnime);
 
         String nome = animeSalvo.getNome();
@@ -99,8 +98,5 @@ class AnimeRepositoryTest {
 
     }
 
-    private Anime createAnime(){
-        return Anime.builder().nome("Salvar este anime")
-                .build();
-    }
+
 }
