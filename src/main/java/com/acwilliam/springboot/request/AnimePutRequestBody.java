@@ -3,6 +3,7 @@ package com.acwilliam.springboot.request;
 import lombok.Data;
 
 @Data
-public class AnimePostRequestBody {
+public class AnimePutRequestBody {
+    private Long id;
     private String nome;
 }

@@ -1,12 +1,13 @@
 package com.acwilliam.springboot.repository;
 
 import com.acwilliam.springboot.dominio.Anime;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface AnimeRepository{
-
-    List<Anime> listaAll();
+@Repository
+public interface AnimeRepository extends JpaRepository<Anime, Long> {
 
 
 }
