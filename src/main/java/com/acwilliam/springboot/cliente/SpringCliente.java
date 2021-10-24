@@ -37,6 +37,19 @@ public class SpringCliente {
         ResponseEntity<Anime> berserksalvo = new RestTemplate().exchange("http://localhost:8080/animes", HttpMethod.POST,
                 new HttpEntity<>(berserk,creatJsonHeader()), Anime.class);
         log.info("Salvo anime {}", berserksalvo);
+
+        Anime animesalvado = berserksalvo.getBody();
+        animesalvado.setNome("Berserk BR");
+
+        ResponseEntity<Void> berserkAtualizacao = new RestTemplate().exchange("http://localhost:8080/animes", HttpMethod.PUT,
+                new HttpEntity<>(animesalvado,creatJsonHeader()), Void.class);
+        log.info("Atualizacação {}", animesalvado);
+
+
+        ResponseEntity<Void> berserkDelete = new RestTemplate().exchange("http://localhost:8080/animes/{id}", HttpMethod.DELETE,
+               null, Void.class,animesalvado.getId());
+        log.info("Atualizacação {}", animesalvado);
+
     }
 
     private static HttpHeaders creatJsonHeader(){
