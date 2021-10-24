@@ -3,8 +3,7 @@ package com.acwilliam.springboot.cliente;
 import com.acwilliam.springboot.dominio.Anime;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -29,5 +28,20 @@ public class SpringCliente {
         });
 
         log.info(exchange.getBody());
+
+     /*   Anime kingdom = Anime.builder().nome("kingdom").build();
+        Anime kingdomsalvo = new RestTemplate().postForObject("http://localhost:8080/animes", kingdom, Anime.class);
+        log.info("Salvo anime {}", kingdomsalvo);*/
+
+        Anime berserk = Anime.builder().nome("Berserk").build();
+        ResponseEntity<Anime> berserksalvo = new RestTemplate().exchange("http://localhost:8080/animes", HttpMethod.POST,
+                new HttpEntity<>(berserk,creatJsonHeader()), Anime.class);
+        log.info("Salvo anime {}", berserksalvo);
+    }
+
+    private static HttpHeaders creatJsonHeader(){
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return httpHeaders;
     }
 }
