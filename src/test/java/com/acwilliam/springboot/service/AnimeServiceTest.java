@@ -100,7 +100,7 @@ class AnimeServiceTest {
 
         Assertions.assertThat(anime.getId()).isNotNull().isEqualTo(idEsperado);
     }
-    
+
 
     @Test
     @DisplayName("FindByNome retorna anime com sucesso")
